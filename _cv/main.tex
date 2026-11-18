@@ -5,8 +5,8 @@
   ignoreheadfoot, % set margins without considering header and footer
   top=2 cm, % seperation between body and page edge from the top
   bottom=2 cm, % seperation between body and page edge from the bottom
-  left=2 cm, % seperation between body and page edge from the left
-  right=2 cm, % seperation between body and page edge from the right
+  left=1.7 cm, % seperation between body and page edge from the left
+  right=1.7 cm, % seperation between body and page edge from the right
   footskip=1.0 cm, % seperation between body and footer
   % showframe % for debugging 
 ]{geometry} % for adjusting page geometry
@@ -45,6 +45,8 @@
 \fi
 
 \usepackage{charter}
+\linespread{1.12} % slightly looser line spacing
+\clubpenalty=10000 \widowpenalty=10000 % never leave a single line of a paragraph alone across pages
 
 % Some settings:
 \raggedright
@@ -56,17 +58,17 @@
 \setlength{\columnsep}{0.15cm} % set column seperation
 %\pagenumbering{gobble} % no page numbering
 
-\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+\titleformat{\section}{\needspace{5\baselineskip}\bfseries\fontsize{13.5}{16}\selectfont}{}{0pt}{\MakeUppercase}[\vspace{1pt}\titlerule]
 
 \titlespacing{\section}{
   % left space:
   -1pt
 }{
   % top space:
-  0.3 cm
+  0.5 cm
 }{
   % bottom space:
-  0.2 cm
+  0.25 cm
 } % section title spacing
 
 \renewcommand\labelitemi{$\vcenter{\hbox{\small$\bullet$}}$} % custom bullet points
@@ -75,7 +77,7 @@
     topsep=0.10 cm,
     parsep=0.10 cm,
     partopsep=0pt,
-    itemsep=0pt,
+    itemsep=0.12 cm,
     leftmargin=0 cm + 10pt
   ]
 }{
@@ -108,7 +110,7 @@
 \newenvironment{twocolentry}[2][]{
   \onecolentry
   \def\secondColumn{#2}
-  \setcolumnwidth{\fill, 4.5 cm}
+  \setcolumnwidth{\fill, 6 cm}
   \begin{paracol}{2}
 }{
   \switchcolumn \raggedleft \secondColumn
@@ -151,6 +153,18 @@
 % new command for external links:
 
 
+% publication entry: venue label on the left, title/authors/venue on the right
+\newcommand{\me}{\underline{\textbf{Junseo Lee}}}
+\newcommand{\pubentry}[4]{%
+  \begin{onecolentry}
+  \begin{tabularx}{\linewidth}{@{}p{2.2cm}>{\raggedright\arraybackslash}X@{}}
+    \textbf{#1} & #2 \\[1pt]
+    & \mbox{\me}, #3 \\[1pt]
+    & \textit{#4}
+  \end{tabularx}
+  \end{onecolentry}
+}
+
 \begin{document}
   \placelastupdatedtext
   \newcommand{\AND}{\unskip
@@ -178,7 +192,7 @@
     %\kern 5.0 pt%
     %\AND%
     %\kern 5.0 pt%
-    \mbox{\hrefWithoutArrow{https://junseo013.github.io/}{junseo013.github.io}}%
+    \mbox{\hrefWithoutArrow{https://junseolee0.github.io/}{junseolee0.github.io}}%
     \kern 5.0 pt%
     \AND%
     \kern 5.0 pt%
@@ -193,6 +207,7 @@
   \vspace{5 pt - 0.3 cm}
 
 
+  \fontsize{10.5}{13}\selectfont % body text size (both pages)
   \section{Research Interests}
 %    \begin{onecolentry}
 %      My research interests are in \textbf{computer architecture} and
@@ -215,7 +230,7 @@
     \end{twocolentry}
     \vspace{0.1cm}
     \begin{twocolentry}{
-      Mar 2022 – Present
+      Mar 2022 – Feb 2028 (expected)
     }
       M.S./Ph.D., Electrical and Computer Engineering
     \end{twocolentry}
@@ -233,6 +248,33 @@
       B.S., Electrical and Computer Engineering
     \end{twocolentry}
     
+  \section{Publications}
+    \needspace{4\baselineskip}
+    \pubentry{\makebox[0pt][l]{\raisebox{-1.2\baselineskip}[0pt][0pt]{\normalfont\small\textit{to appear}}}HPCA '27}{BlendCore: Architectural Support for High-Throughput Programmable Blending}{\mbox{Wonjae Jang}, \mbox{Sangyun Jeon}, \mbox{Jaewoong Sim}}{33rd International Symposium on High-Performance Computer Architecture, 2027}
+    \vspace{0.40 cm}
+    \needspace{4\baselineskip}
+    \pubentry{HPCA '26}{GRTX: Efficient Ray Tracing for 3D Gaussian-Based Rendering}{\mbox{Sangyun Jeon}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim}}{32nd International Symposium on High-Performance Computer Architecture, 2026}
+    \vspace{0.40 cm}
+    \needspace{4\baselineskip}
+    \pubentry{HPCA '25}{VR-Pipe: Streamlining Hardware Graphics Pipeline for Volume Rendering}{\mbox{Jaisung Kim}, \mbox{Junyong Park}, \mbox{Jaewoong Sim}}{31st International Symposium on High-Performance Computer Architecture, 2025}
+    \vspace{0.40 cm}
+    \needspace{4\baselineskip}
+    \pubentry{ASPLOS '24}{GSCore: Efficient Radiance Field Rendering via Architectural Support for 3D Gaussian Splatting}{\mbox{Seokwon Lee}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim}}{2024 International Conference on Architectural Support for Programming Languages and Operating Systems, 2024}
+    \vspace{0.40 cm}
+    \needspace{4\baselineskip}
+    \pubentry{ISCA '23}{NeuRex: A Case for Neural Rendering Acceleration}{\mbox{Kwanseok Choi}, \mbox{Jungi Lee}, \mbox{Seokwon Lee}, \mbox{Joonho Whangbo}, \mbox{Jaewoong Sim}}{50th Annual International Symposium on Computer Architecture, 2023}
+
+  \section{Honors and Awards}
+    \begin{onecolentry}
+      \textbf{Outstanding Graduate Student Research Fellowship}: Department of ECE, Seoul National University \hfill 2026
+    \end{onecolentry}
+    \vspace{0.15 cm}
+    \begin{onecolentry}
+      \textbf{Student Travel Grants}: ISCA '23, ASPLOS '24, HPCA '25 \hfill 2023--2025
+    \end{onecolentry}
+
+  \clearpage
+  \fontsize{10.5}{13}\selectfont
   \section{Research Experience}
     \begin{twocolentry}{
       Mar 2022 – Present
@@ -273,48 +315,48 @@
         \item \textbf{NeuRex (ISCA '23): Algorithm-hardware co-design for Neural Radiance Fields (NeRF) rendering}
         \begin{itemize}
             \item Made the multi-resolution hash encoding hardware-friendly and co-designed an encoding engine, which together eliminate irregular off-chip memory accesses.
-            \item Implemented NeuRex in SystemVerilog and demonstrated small area overhead and low power consumption.
+            \item Implemented NeuRex in SystemVerilog with small area overhead and low power consumption.
         \end{itemize}
       \end{highlights}
     \end{onecolentry}
   
-  \section{Publications}
-    \begin{samepage}
-      \needspace{4\baselineskip}
-      \begin{onecolentry}
-        \textbf{BlendCore: Architectural Support for High-Throughput Programmable Blending} \\
-        \mbox{\textbf{Junseo Lee}}, \mbox{Wonjae Jang}, \mbox{Sangyun Jeon}, \mbox{Jaewoong Sim} \\
-        \textit{Proc. of the 33rd International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), March 2027 (to appear)}
-      \end{onecolentry}
-      \vspace{0.30 cm}
-      \needspace{4\baselineskip}
-      \begin{onecolentry}
-        \textbf{GRTX: Efficient Ray Tracing for 3D Gaussian-Based Rendering} \\
-        \mbox{\textbf{Junseo Lee}}, \mbox{Sangyun Jeon}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
-        \textit{Proc. of the 32nd International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), January 2026}
-      \end{onecolentry}
-      \vspace{0.30 cm}
-      \needspace{4\baselineskip}
-      \begin{onecolentry}
-        \textbf{VR-Pipe: Streamlining Hardware Graphics Pipeline for Volume Rendering} \\
-        \mbox{\textbf{Junseo Lee}}, \mbox{Jaisung Kim}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
-        \textit{Proc. of the 31st International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), March 2025}
-      \end{onecolentry}
-      \vspace{0.30 cm}
-      \needspace{4\baselineskip}
-      \begin{onecolentry}
-        \textbf{GSCore: Efficient Radiance Field Rendering via Architectural Support for 3D Gaussian Splatting} \\
-        \mbox{\textbf{Junseo Lee}}, \mbox{Seokwon Lee}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
-        \textit{Proc. of the 2024 International Conference on Architectural Support for Programming Languages and Operating Systems (\textbf{ASPLOS}), April 2024}
-      \end{onecolentry}
-      \vspace{0.30 cm}
-      \needspace{4\baselineskip}
-      \begin{onecolentry}
-        \textbf{NeuRex: A Case for Neural Rendering Acceleration} \\
-        \mbox{\textbf{Junseo Lee}}, \mbox{Kwanseok Choi}, \mbox{Jungi Lee}, \mbox{Seokwon Lee}, \mbox{Joonho Whangbo}, \mbox{Jaewoong Sim} \\
-        \textit{Proc. of the 50th Annual International Symposium on Computer Architecture (\textbf{ISCA}), June 2023}
-      \end{onecolentry}
-    \end{samepage}
+%  \section{Publications}
+%    \begin{samepage}
+%      \needspace{4\baselineskip}
+%      \begin{onecolentry}
+%        \textbf{BlendCore: Architectural Support for High-Throughput Programmable Blending} \\
+%        \mbox{\textbf{Junseo Lee}}, \mbox{Wonjae Jang}, \mbox{Sangyun Jeon}, \mbox{Jaewoong Sim} \\
+%        \textit{Proc. of the 33rd International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), March 2027 (to appear)}
+%      \end{onecolentry}
+%      \vspace{0.30 cm}
+%      \needspace{4\baselineskip}
+%      \begin{onecolentry}
+%        \textbf{GRTX: Efficient Ray Tracing for 3D Gaussian-Based Rendering} \\
+%        \mbox{\textbf{Junseo Lee}}, \mbox{Sangyun Jeon}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
+%        \textit{Proc. of the 32nd International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), January 2026}
+%      \end{onecolentry}
+%      \vspace{0.30 cm}
+%      \needspace{4\baselineskip}
+%      \begin{onecolentry}
+%        \textbf{VR-Pipe: Streamlining Hardware Graphics Pipeline for Volume Rendering} \\
+%        \mbox{\textbf{Junseo Lee}}, \mbox{Jaisung Kim}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
+%        \textit{Proc. of the 31st International Symposium on High-Performance Computer Architecture (\textbf{HPCA}), March 2025}
+%      \end{onecolentry}
+%      \vspace{0.30 cm}
+%      \needspace{4\baselineskip}
+%      \begin{onecolentry}
+%        \textbf{GSCore: Efficient Radiance Field Rendering via Architectural Support for 3D Gaussian Splatting} \\
+%        \mbox{\textbf{Junseo Lee}}, \mbox{Seokwon Lee}, \mbox{Jungi Lee}, \mbox{Junyong Park}, \mbox{Jaewoong Sim} \\
+%        \textit{Proc. of the 2024 International Conference on Architectural Support for Programming Languages and Operating Systems (\textbf{ASPLOS}), April 2024}
+%      \end{onecolentry}
+%      \vspace{0.30 cm}
+%      \needspace{4\baselineskip}
+%      \begin{onecolentry}
+%        \textbf{NeuRex: A Case for Neural Rendering Acceleration} \\
+%        \mbox{\textbf{Junseo Lee}}, \mbox{Kwanseok Choi}, \mbox{Jungi Lee}, \mbox{Seokwon Lee}, \mbox{Joonho Whangbo}, \mbox{Jaewoong Sim} \\
+%        \textit{Proc. of the 50th Annual International Symposium on Computer Architecture (\textbf{ISCA}), June 2023}
+%      \end{onecolentry}
+%    \end{samepage}
     
 %  \section{Projects}
 %    \begin{twocolentry}{
@@ -359,7 +401,7 @@
 %        \item Tools Used: C
 %      \end{highlights}
 %    \end{onecolentry}
-    
+
   \section{Teaching}
     \begin{onecolentry}
       \textbf{Graduate Teaching Assistant}
@@ -372,10 +414,10 @@
     \end{twocolentry}
     \vspace{0.1cm}
     \begin{onecolentry}
-      \begin{highlights}
+      \begin{highlightsforbulletentries}
         \item ECE 315.A: Digital Systems Design and Experiments \hfill Fall 2022
         \item ECE 322: Computer Organization \hfill Spring 2022
-      \end{highlights}
+      \end{highlightsforbulletentries}
     \end{onecolentry}
     \vspace{0.1cm}
     \begin{onecolentry}
